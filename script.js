@@ -1,13 +1,32 @@
-let playerSelection = "rOcK";
+let playerSelection = '';
 let computerSelection = "";
 let selections = ["rock", "paper", "scissors"];
 let score = 0;
+
+/*Check input*/
+function checkInput(input){
+    if(selections.includes(input))
+        return true;
+
+    return false;
+}
+
+
+/*Get input*/ 
+do{
+    playerSelection = prompt("Pick Rock, Paper or Scissors");
+    playerSelection = playerSelection.toLowerCase();
+}
+while(!checkInput(playerSelection));
+
 
 /*Get choice from opponent*/ 
 function getComputerChoice(){
     let no = Math.floor(Math.random() * 3);
     computerSelection = selections[no];
-};
+}
+
+
 /*Round results*/ 
 function winState(player, opponent){
     score++;
@@ -17,10 +36,10 @@ function loseState(player, opponent){
     return `You Lose! ${opponent} beats ${player}`;
 }
 
+
 /*Play a round of the game*/
 function playRound(player, opponent){
     let message = '';
-    player = player.toLowerCase();
     if(player === opponent){
         getComputerChoice();
         return playRound(playerSelection, computerSelection);
