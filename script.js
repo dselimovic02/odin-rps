@@ -1,4 +1,4 @@
-let playerSelcetion = "rOcK";
+let playerSelection = "rOcK";
 let computerSelection = "";
 let selections = ["rock", "paper", "scissors"];
 
@@ -13,25 +13,27 @@ getComputerChoice();
 
 /*Round results*/ 
 function winState(player, opponent){
-    console.log(`You Win! ${player} beats ${opponent}`);
+    return `You Win! ${player} beats ${opponent}`;
 }
 function loseState(player, opponent){
-    console.log(`You Lose! ${opponent} beats ${player}`);
+    return `You Lose! ${opponent} beats ${player}`;
 }
 
 /*Play a round of the game*/
 function playRound(player, opponent){
+    let message = '';
     player = player.toLowerCase();
     if(player === opponent){
         getComputerChoice();
-        playRound(playerSelcetion, computerSelection);
+        return playRound(playerSelection, computerSelection);
     }else{
         switch(player){
-            case "rock": opponent === "scissors" ? winState(player, opponent) : loseState(player, opponent); break;
-            case "scissors": opponent === "paper" ? winState(player, opponent) : loseState(player, opponent); break;
-            case "paper": opponent == "rock" ? winState(player, opponent) : loseState(player, opponent); break;
+            case "rock": opponent === "scissors" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
+            case "scissors": opponent === "paper" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
+            case "paper": opponent == "rock" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
         }
+        return message;
     }
 }
 
-playRound(playerSelcetion, computerSelection);
+console.log(playRound(playerSelection, computerSelection));
