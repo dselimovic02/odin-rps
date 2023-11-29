@@ -1,18 +1,16 @@
 let playerSelection = "rOcK";
 let computerSelection = "";
 let selections = ["rock", "paper", "scissors"];
-
+let score = 0;
 
 /*Get choice from opponent*/ 
 function getComputerChoice(){
     let no = Math.floor(Math.random() * 3);
     computerSelection = selections[no];
 };
-
-getComputerChoice();
-
 /*Round results*/ 
 function winState(player, opponent){
+    score++;
     return `You Win! ${player} beats ${opponent}`;
 }
 function loseState(player, opponent){
@@ -36,4 +34,18 @@ function playRound(player, opponent){
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+
+/*Best of five*/
+function game(){
+    for(let i = 0; i < 5; i++){
+        getComputerChoice();
+        console.log(playRound(playerSelection,computerSelection));
+    }
+    if(score < 3){
+        return "You lose the game.";
+    }
+
+    return "You win the game.";
+}
+
+console.log(game());
