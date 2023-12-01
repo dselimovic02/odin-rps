@@ -1,70 +1,33 @@
-let playerSelection = '';
-let computerSelection = "";
-let selections = ["rock", "paper", "scissors"];
-let score = 0;
+// Open and close rules
+let rulesBtn = document.querySelector(".rulesBtn");
 
-/*Check input*/
-function checkInput(input){
-    if(selections.includes(input))
-        return true;
+rulesBtn.addEventListener("click", () =>{
+    let rulesDiv = document.createElement("div");
+    rulesDiv.classList.add("rules-div");
 
-    return false;
-}
+    let rules = document.createElement("div");
+    rules.classList.add("rules");
 
+    let rulesHeader = document.createElement("div");
+    rulesHeader.classList.add("rules-header");
+    let span = document.createElement("span");
+    span.innerText = "RULES";
+    let closeRules = document.createElement("img");
+    closeRules.src = "images/icon-close.svg";
+    closeRules.alt = "close";
+    closeRules.classList.add("close-rules");
+    closeRules.onclick = () => document.body.removeChild(rulesDiv);
+    rulesHeader.appendChild(span);
+    rulesHeader.appendChild(closeRules);
 
-/*Get input*/ 
-do{
-    playerSelection = prompt("Pick Rock, Paper or Scissors");
-    playerSelection = playerSelection.toLowerCase();
-}
-while(!checkInput(playerSelection));
+    let rulesImg = document.createElement("img");
+    rulesImg.src = "images/image-rules.svg";
+    rulesImg.alt = "rock beats paper, paper beats scissors, scissors beat rock";
+    
+    rules.appendChild(rulesHeader);
+    rules.appendChild(rulesImg);
 
+    rulesDiv.appendChild(rules);
+    document.body.appendChild(rulesDiv);
 
-/*Get choice from opponent*/ 
-function getComputerChoice(){
-    let no = Math.floor(Math.random() * 3);
-    computerSelection = selections[no];
-}
-
-
-/*Round results*/ 
-function winState(player, opponent){
-    score++;
-    return `You Win! ${player} beats ${opponent}`;
-}
-function loseState(player, opponent){
-    return `You Lose! ${opponent} beats ${player}`;
-}
-
-
-/*Play a round of the game*/
-function playRound(player, opponent){
-    let message = '';
-    if(player === opponent){
-        getComputerChoice();
-        return playRound(playerSelection, computerSelection);
-    }else{
-        switch(player){
-            case "rock": opponent === "scissors" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
-            case "scissors": opponent === "paper" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
-            case "paper": opponent == "rock" ? message = winState(player, opponent) : message = loseState(player, opponent); break;
-        }
-        return message;
-    }
-}
-
-
-/*Best of five*/
-function game(){
-    for(let i = 0; i < 5; i++){
-        getComputerChoice();
-        console.log(playRound(playerSelection,computerSelection));
-    }
-    if(score < 3){
-        return "You lose the game.";
-    }
-
-    return "You win the game.";
-}
-
-console.log(game());
+});
