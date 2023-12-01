@@ -23,9 +23,27 @@ roundOptions.forEach(item => {
 //Start a game
 /****************************************************************************************/
 let playBtn = document.querySelector(".playBtn");
+let userChoice = '';
 
+
+function generateComputerChoice(){
+    let selections = ["rock", "paper", "scissors"];
+    let no = Math.floor(Math.random() * 3);
+    return selections[no];
+}
+function removeOptions(){
+    let options = document.querySelector(".options");
+    options.classList.add("fade-out");
+    setTimeout(()=>{options.remove()}, 490);
+}
+
+function displayResult(){
+    removeOptions();
+    console.log(userChoice);
+    console.log(generateComputerChoice());
+}
 function createOption(optionName){
-    option = document.createElement("div");
+    let option = document.createElement("div");
     option.classList.add("option");
     option.id = `${optionName}`;
     let optionCircle = document.createElement("div");
@@ -33,9 +51,13 @@ function createOption(optionName){
     let optionImg = document.createElement("img");
     optionImg.src = `images/icon-${optionName}.svg`;
     optionImg.alt = `${optionName}`;
+    option.addEventListener("click", e => {
+        userChoice = option.id;
+        displayResult();
+        e.stopPropagation();
+    });
     optionCircle.appendChild(optionImg);
     option.appendChild(optionCircle);
-
     return option;
 }
 function displayOptions(){

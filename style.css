@@ -223,7 +223,17 @@ input[type=number] {
     left: 50%;
     translate: -55% -55%;
 }
-
+.fade-out{
+    animation: fade-out .5s linear;
+}
+@keyframes fade-out{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
 
 
 
@@ -275,4 +285,38 @@ input[type=number] {
 .close-rules:hover{
     cursor: pointer;
     transform: scale(1.1);
+}
+
+/*RESULTS*/
+/********************************************/
+.result{
+    font-size: 2.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30rem;
+}
+.result .option{
+    position: unset !important;
+
+}
+.result .option:hover{
+    cursor: unset !important;
+    transform: unset !important;
+}
+.result .option:active{
+    transform: unset !important;
+}
+.you,
+.house{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
 }
