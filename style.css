@@ -24,6 +24,15 @@
     /*Font weights*/
     --semi-bold: 600;
     --bold: 700;
+
+    /*SIZES*/
+    --triangle-size: 28rem;
+    --option-size: 20rem;
+    --circle-size: 15rem;
+
+    /*OPTION SHADOW*/
+    --outside: inset 0 -.6rem rgba(0, 0, 0, 0.35);
+    --inside: inset 0 .6rem rgba(0, 0, 0, 0.2);
 }
 *{
     margin: 0;
@@ -41,9 +50,10 @@ body{
     background: radial-gradient(circle at top,var(--bg-from), var(--bg-to));
     padding: 6rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .header{
-    margin: 0 auto;
     display: flex;
     height: fit-content;
     width: 40vw;
@@ -70,4 +80,59 @@ body{
 .score-div .score{
     font-size: 6.4rem;
     color: var(--Dark-Text);
+}
+
+/*OPTIONS*/
+.options{
+    margin-top: 20rem;
+    width: var(--triangle-size);
+    height: var(--triangle-size);
+    background-image: url('images/bg-triangle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.option{
+    width: var(--option-size);
+    height: var(--option-size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--outside);
+}
+.option.paper{
+    background: var(--paper-from);
+    position: absolute;
+    top: -10rem;
+    left: -10rem;
+}
+.option.scissors{
+    background: var(--scissors-from);
+    position: absolute;
+    top: -10rem;
+    right: -10rem;
+}
+.option.rock{
+    background: var(--rock-from);
+    position: absolute;
+    bottom: -5rem;
+    left: 50%;
+    translate: -50% 0;
+}
+.option-circle{
+    border-radius: 50%;
+    height: var(--circle-size);
+    width: var(--circle-size);
+    background: var(--white);
+    box-shadow: var(--inside);
+    position: relative;
+}
+.option img{
+    width: 5.9rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -55% -55%;
 }
