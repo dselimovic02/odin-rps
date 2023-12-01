@@ -44,16 +44,46 @@ html{
     font-family: 'Barlow Semi Condensed', sans-serif;
 }
 body{
+    background: radial-gradient(circle at top,var(--bg-from), var(--bg-to));
     font-size: 1.6rem;
     width: 100%;
     height: 100vh;
-    background: radial-gradient(circle at top,var(--bg-from), var(--bg-to));
     padding: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
+button{
+    background: transparent;
+    color: var(--white);
+    font-weight: var(--semi-bold);
+    border: 1px solid var(--white);
+    outline: 0;
+    padding: 1.5rem 3rem;
+    border-radius: .8rem;
+}
+button:hover{
+    cursor: pointer;
+    box-shadow: 0 0 2rem #ffffff22;
+}
+
+
+
+
+/*PLAY*/
+/********************************************/
+.playBtn{
+    font-size: 3.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+
+
+/*HEADER*/
+/********************************************/
 .header{
     display: flex;
     height: fit-content;
@@ -83,7 +113,11 @@ body{
     color: var(--Dark-Text);
 }
 
+
+
+
 /*OPTIONS*/
+/********************************************/
 .options{
     margin-top: 20rem;
     width: var(--triangle-size);
@@ -104,19 +138,26 @@ body{
     box-shadow: var(--outside),
     0rem .2rem .3rem #00000055;
 }
-.option.paper{
+.option:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.option:active{
+    transform: scale(1.1);
+}
+#paper{
     background: var(--paper-from);
     position: absolute;
     top: -10rem;
     left: -10rem;
 }
-.option.scissors{
+#scissors{
     background: var(--scissors-from);
     position: absolute;
     top: -10rem;
     right: -10rem;
 }
-.option.rock{
+#rock{
     background: var(--rock-from);
     position: absolute;
     bottom: -5rem;
@@ -139,23 +180,15 @@ body{
     translate: -55% -55%;
 }
 
+
+
+
 /*RULES*/
+/********************************************/
 .rulesBtn{
     position: absolute;
     right: 3rem;
     bottom: 4rem;
-
-    background: transparent;
-    color: var(--white);
-    font-weight: var(--semi-bold);
-    border: 1px solid var(--white);
-    outline: 0;
-    padding: 1.5rem 3rem;
-    border-radius: .8rem;
-}
-.rulesBtn:hover{
-    cursor: pointer;
-    box-shadow: 0 0 2rem #ffffff22;
 }
 .rules-div{
     position: absolute;
@@ -173,6 +206,15 @@ body{
     padding: 3rem 5rem;
     border-radius: 1rem;
     position: relative;
+    animation: enlarge .3s ease-out;
+}
+@keyframes enlarge {
+    0%{
+        transform: scale(0.1);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 .rules-header{
     width: 100%;

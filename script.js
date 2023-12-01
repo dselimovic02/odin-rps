@@ -1,4 +1,37 @@
+//Start a game
+/****************************************************************************************/
+let playBtn = document.querySelector(".playBtn");
+
+function createOption(optionName){
+    option = document.createElement("div");
+    option.classList.add("option");
+    option.id = `${optionName}`;
+    let optionCircle = document.createElement("div");
+    optionCircle.classList.add("option-circle");
+    let optionImg = document.createElement("img");
+    optionImg.src = `images/icon-${optionName}.svg`;
+    optionImg.alt = `${optionName}`;
+    optionCircle.appendChild(optionImg);
+    option.appendChild(optionCircle);
+
+    return option;
+}
+
+playBtn.addEventListener("click", ()=>{
+    playBtn.remove();
+    
+    let options = document.createElement("div");
+    options.classList.add("options");
+    let optionNames = ['paper', 'scissors', 'rock'];
+
+    optionNames.forEach(item => options.appendChild(createOption(item)));
+
+    document.body.appendChild(options);
+});
+
+
 // Open and close rules
+/****************************************************************************************/
 let rulesBtn = document.querySelector(".rulesBtn");
 
 rulesBtn.addEventListener("click", () =>{
