@@ -52,6 +52,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--white);
 }
 button{
     background: transparent;
@@ -66,10 +67,47 @@ button:hover{
     cursor: pointer;
     box-shadow: 0 0 2rem #ffffff22;
 }
-
-
-
-
+/*Input rounds*/
+/********************************************/
+.input-rounds{
+    text-align: center;
+    margin-top: 7rem;
+}
+.input-rounds p{
+    font-size: 3.2rem;
+    letter-spacing: .1rem;
+    margin-bottom: 2rem;
+}
+.round-options{
+    font-size: 2.2rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+.round-options span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.selected{
+    text-decoration: underline;
+}
+@keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(10px);
+    }
+}
+.shake {
+    animation: shake 0.5s ease-in-out;
+  }
 /*PLAY*/
 /********************************************/
 .playBtn{

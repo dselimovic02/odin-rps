@@ -1,3 +1,25 @@
+//Enter no. of rounds
+/****************************************************************************************/
+let rounds = document.querySelector(".score .rounds");
+let inputRounds = document.querySelector(".input-rounds");
+let roundInputHolder = 0;
+rounds.innerText = 0;
+
+let roundOptions = document.querySelectorAll(".round-options span");
+roundOptions.forEach(item => {
+    item.addEventListener("click", ()=>{
+        roundInputHolder = item.id;
+        roundOptions.forEach(item => {
+            if(item.classList.contains("selected"))
+                item.classList.remove("selected")
+            });
+        item.classList.add("selected");
+    });
+
+});
+
+
+
 //Start a game
 /****************************************************************************************/
 let playBtn = document.querySelector(".playBtn");
@@ -18,15 +40,22 @@ function createOption(optionName){
 }
 
 playBtn.addEventListener("click", ()=>{
-    playBtn.remove();
-    
-    let options = document.createElement("div");
-    options.classList.add("options");
-    let optionNames = ['paper', 'scissors', 'rock'];
+    if(roundInputHolder == 0){
+        inputRounds.classList.add("shake");
+        setTimeout(()=>{inputRounds.classList.remove("shake")}, 500);
+    }else{
+        rounds.innerText = roundInputHolder;
+        inputRounds.remove();
+        playBtn.remove();
+        
+        let options = document.createElement("div");
+        options.classList.add("options");
+        let optionNames = ['paper', 'scissors', 'rock'];
 
-    optionNames.forEach(item => options.appendChild(createOption(item)));
+        optionNames.forEach(item => options.appendChild(createOption(item)));
 
-    document.body.appendChild(options);
+        document.body.appendChild(options);
+    }
 });
 
 
