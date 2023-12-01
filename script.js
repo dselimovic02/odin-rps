@@ -38,7 +38,15 @@ function createOption(optionName){
 
     return option;
 }
+function displayOptions(){
+    let options = document.createElement("div");
+    options.classList.add("options");
+    let optionNames = ['paper', 'scissors', 'rock'];
 
+    optionNames.forEach(item => options.appendChild(createOption(item)));
+
+    document.body.appendChild(options);
+}
 playBtn.addEventListener("click", ()=>{
     if(roundInputHolder == 0){
         inputRounds.classList.add("shake");
@@ -47,14 +55,7 @@ playBtn.addEventListener("click", ()=>{
         rounds.innerText = roundInputHolder;
         inputRounds.remove();
         playBtn.remove();
-        
-        let options = document.createElement("div");
-        options.classList.add("options");
-        let optionNames = ['paper', 'scissors', 'rock'];
-
-        optionNames.forEach(item => options.appendChild(createOption(item)));
-
-        document.body.appendChild(options);
+        displayOptions();
     }
 });
 

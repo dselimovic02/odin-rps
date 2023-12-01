@@ -67,6 +67,12 @@ button:hover{
     cursor: pointer;
     box-shadow: 0 0 2rem #ffffff22;
 }
+button:active{
+    transform: scale(0.9);
+}
+
+
+
 /*Input rounds*/
 /********************************************/
 .input-rounds{
