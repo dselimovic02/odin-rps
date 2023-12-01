@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+
+:root{
+
+    /* ### Primary */
+    --scissors-from: hsl(39, 89%, 49%);
+    --scissors-to: hsl(40, 84%, 53%);
+    --paper-from: hsl(230, 89%, 62%);
+    --paper-to: hsl(230, 89%, 65%);
+    --rock-from: hsl(349, 71%, 52%);
+    --rock-to: hsl(349, 70%, 56%);
+    /* - Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%) */
+
+    /* ### Neutral */
+    --Dark-Text: hsl(229, 25%, 31%);
+    --Score-Text: hsl(229, 64%, 46%);
+    --Header-Outline: hsl(217, 16%, 45%);
+
+    /* ### Background */
+    --bg-from: hsl(214, 47%, 23%);
+    --bg-to: hsl(237, 49%, 15%);
+
+    /*Font weights*/
+    --semi-bold: 600;
+    --bold: 700;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 10px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
