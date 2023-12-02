@@ -3,6 +3,8 @@
 let rounds = document.querySelector(".score .rounds");
 let inputRounds = document.querySelector(".input-rounds");
 let roundInputHolder = 0;
+let playedRounds = 0;
+let wonRoundsLimit = 0;
 rounds.innerText = 0;
 
 let roundOptions = document.querySelectorAll(".round-options span");
@@ -24,23 +26,106 @@ roundOptions.forEach(item => {
 /****************************************************************************************/
 let playBtn = document.querySelector(".playBtn");
 let userChoice = '';
+let computerChoice = '';
+let selections = ["rock", "paper", "scissors"];
+let randomNum = 0;
+let points = document.querySelector(".points");
+points.innerText = 0;
 
 
-function generateComputerChoice(){
-    let selections = ["rock", "paper", "scissors"];
-    let no = Math.floor(Math.random() * 3);
-    return selections[no];
+function generateComputerChoice(userChoice){
+    
+    do{
+         randomNum = Math.floor(Math.random() * 3);
+    }while(selections[randomNum] === userChoice);
+    
+    return "rock";
 }
 function removeOptions(){
     let options = document.querySelector(".options");
     options.classList.add("fade-out");
     setTimeout(()=>{options.remove()}, 490);
 }
+function won(){
+    if((userChoice == "rock" && computerChoice == "scissors") || (userChoice == "paper" && computerChoice == "rock") || (userChoice == "scissors" && computerChoice == "paper")){
+        return true;
+    }
 
+    return false;
+}
+function createResultDisplay(){
+    let userChoiceDisplay = createOption(userChoice);
+    let computerChoiceDisplay = createOption(computerChoice);
+    if(won()) points.innerText++;
+    let nextRoundBtn;
+    
+
+    let resultsDisplay = document.createElement("div");
+    resultsDisplay.classList.add("result-div");
+
+
+    let userChoiceDiv = document.createElement("div");
+    userChoiceDiv.classList.add("you");
+    let pUser = document.createElement("p");
+    pUser.innerText = "YOU PICKED";
+    userChoiceDiv.appendChild(pUser);
+    userChoiceDiv.appendChild(userChoiceDisplay);
+
+    let result = document.createElement("div");
+    result.classList.add("result");
+    let resultP = document.createElement("p");
+        if(playedRounds == roundInputHolder){
+            if(points.innerText < wonRoundsLimit){
+                resultP.innerText = "YOU LOST GAME";
+            }else{
+                resultP.innerText = "YOU WON GAME";
+            }
+            nextRoundBtn = document.createElement("button");
+            nextRoundBtn.classList.add("nextRoundBtn");
+            nextRoundBtn.type = "button";
+            nextRoundBtn.innerText = "PLAY AGAIN";
+            nextRoundBtn.onclick = () => location.reload();
+        } else{
+            if(won()){
+                resultP.innerText = "YOU WON";
+            }else{
+                resultP.innerText = "YOU LOST";
+            }
+            nextRoundBtn = document.createElement("button");
+            nextRoundBtn.classList.add("nextRoundBtn");
+            nextRoundBtn.type = "button";
+            nextRoundBtn.innerText = "NEXT ROUND";
+            nextRoundBtn.addEventListener("click", ()=>{
+                resultsDisplay.remove();
+                displayOptions();
+            });
+        }
+
+    result.appendChild(resultP);
+    if(typeof nextRoundBtn != "undefined"){
+        result.appendChild(nextRoundBtn);
+    }
+
+
+    let computerChoiceDiv = document.createElement("div");
+    computerChoiceDiv.classList.add("house");
+    let pComputer = document.createElement("p");
+    pComputer.innerText = "HOUSE PICKED";
+    computerChoiceDiv.appendChild(pComputer);
+    computerChoiceDiv.appendChild(computerChoiceDisplay);
+
+    resultsDisplay.appendChild(userChoiceDiv);
+    resultsDisplay.appendChild(result);
+    resultsDisplay.appendChild(computerChoiceDiv);
+
+    document.body.appendChild(resultsDisplay);
+}
 function displayResult(){
     removeOptions();
-    console.log(userChoice);
-    console.log(generateComputerChoice());
+    setTimeout(()=>{
+        createResultDisplay(); 
+    }, 490);
+    playedRounds++;
 }
 function createOption(optionName){
     let option = document.createElement("div");
@@ -53,6 +138,7 @@ function createOption(optionName){
     optionImg.alt = `${optionName}`;
     option.addEventListener("click", e => {
         userChoice = option.id;
+        computerChoice = generateComputerChoice(userChoice);
         displayResult();
         e.stopPropagation();
     });
@@ -75,13 +161,16 @@ playBtn.addEventListener("click", ()=>{
         setTimeout(()=>{inputRounds.classList.remove("shake")}, 500);
     }else{
         rounds.innerText = roundInputHolder;
+        switch(rounds.innerText){
+            case '1': wonRoundsLimit += 1; break;
+            case '3': wonRoundsLimit += 2; break;
+            case '5': wonRoundsLimit += 3; break;
+        }
         inputRounds.remove();
         playBtn.remove();
         displayOptions();
     }
 });
-
-
 // Open and close rules
 /****************************************************************************************/
 let rulesBtn = document.querySelector(".rulesBtn");

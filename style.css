@@ -289,7 +289,7 @@ input[type=number] {
 
 /*RESULTS*/
 /********************************************/
-.result{
+.result-div{
     font-size: 2.2rem;
     position: absolute;
     top: 50%;
@@ -300,17 +300,18 @@ input[type=number] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30rem;
+    gap: 10rem;
 }
-.result .option{
+.result-div .option{
     position: unset !important;
-
+    translate: unset !important;
+    animation: fade-in 2s linear;
 }
-.result .option:hover{
+.result-div .option:hover{
     cursor: unset !important;
     transform: unset !important;
 }
-.result .option:active{
+.result-div .option:active{
     transform: unset !important;
 }
 .you,
@@ -319,4 +320,22 @@ input[type=number] {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
+}
+.you p,
+.house p{
+    animation: fade-in .5s linear;
+}
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
