@@ -1,13 +1,26 @@
-//Enter no. of rounds
-/****************************************************************************************/
+let selections = ["rock", "paper", "scissors"];
+
+let points = document.querySelector(".points");
 let rounds = document.querySelector(".score .rounds");
 let inputRounds = document.querySelector(".input-rounds");
+let roundOptions = document.querySelectorAll(".round-options span");
+let playBtn = document.querySelector(".playBtn");
+let rulesBtn = document.querySelector(".rulesBtn");
+
+points.innerText = 0;
+rounds.innerText = 0;
+
 let roundInputHolder = 0;
 let playedRounds = 0;
 let wonRoundsLimit = 0;
-rounds.innerText = 0;
+let userChoice = '';
+let computerChoice = '';
+let randomNum = 0;
 
-let roundOptions = document.querySelectorAll(".round-options span");
+
+
+//Enter no. of rounds
+/****************************************************************************************/
 roundOptions.forEach(item => {
     item.addEventListener("click", ()=>{
         roundInputHolder = item.id;
@@ -22,37 +35,36 @@ roundOptions.forEach(item => {
 
 
 
-//Start a game
+
+//FUNCTIONS
 /****************************************************************************************/
-let playBtn = document.querySelector(".playBtn");
-let userChoice = '';
-let computerChoice = '';
-let selections = ["rock", "paper", "scissors"];
-let randomNum = 0;
-let points = document.querySelector(".points");
-points.innerText = 0;
-
-
 function generateComputerChoice(userChoice){
-    
     do{
          randomNum = Math.floor(Math.random() * 3);
     }while(selections[randomNum] === userChoice);
     
-    return "rock";
+    return selections[randomNum];
 }
+
+
 function removeOptions(){
     let options = document.querySelector(".options");
     options.classList.add("fade-out");
     setTimeout(()=>{options.remove()}, 490);
 }
+
+
 function won(){
-    if((userChoice == "rock" && computerChoice == "scissors") || (userChoice == "paper" && computerChoice == "rock") || (userChoice == "scissors" && computerChoice == "paper")){
+    if((userChoice == "rock" && computerChoice == "scissors") || 
+    (userChoice == "paper" && computerChoice == "rock") || 
+    (userChoice == "scissors" && computerChoice == "paper")){
         return true;
     }
 
     return false;
 }
+
+
 function createResultDisplay(){
     let userChoiceDisplay = createOption(userChoice);
     let computerChoiceDisplay = createOption(computerChoice);
@@ -120,6 +132,8 @@ function createResultDisplay(){
 
     document.body.appendChild(resultsDisplay);
 }
+
+
 function displayResult(){
     removeOptions();
     setTimeout(()=>{
@@ -127,6 +141,8 @@ function displayResult(){
     }, 490);
     playedRounds++;
 }
+
+
 function createOption(optionName){
     let option = document.createElement("div");
     option.classList.add("option");
@@ -146,6 +162,8 @@ function createOption(optionName){
     option.appendChild(optionCircle);
     return option;
 }
+
+
 function displayOptions(){
     let options = document.createElement("div");
     options.classList.add("options");
@@ -155,6 +173,9 @@ function displayOptions(){
 
     document.body.appendChild(options);
 }
+
+/*PLAY GAME*/
+/****************************************************************************************/
 playBtn.addEventListener("click", ()=>{
     if(roundInputHolder == 0){
         inputRounds.classList.add("shake");
@@ -171,10 +192,10 @@ playBtn.addEventListener("click", ()=>{
         displayOptions();
     }
 });
+
+
 // Open and close rules
 /****************************************************************************************/
-let rulesBtn = document.querySelector(".rulesBtn");
-
 rulesBtn.addEventListener("click", () =>{
     let rulesDiv = document.createElement("div");
     rulesDiv.classList.add("rules-div");

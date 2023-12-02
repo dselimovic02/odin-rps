@@ -1,0 +1,103 @@
+@media screen and (max-width: 1106px) {
+    .header{
+        width: 60vw !important;
+    }
+}
+@media screen and (max-width: 837px) {
+    .header{
+        width: 80vw !important;
+    }
+    .result-div{
+        gap: 5rem !important;
+    }
+}
+@media screen and (max-width: 699px) {
+    :root{
+        --option-size: 18rem !important;
+    }
+    .header{
+        width: 90vw !important;
+    }
+    button.playBtn{
+        margin-top: 2rem;
+    }
+}
+@media screen and (max-width: 699px) {
+    .input-rounds p{
+        font-size: 2.8rem;
+    }
+}
+
+@media screen and (max-width: 585px) {
+    :root{
+        --option-size: 15rem !important;
+        --triangle-size: 23rem;
+    }
+    .option img{
+        width: 5rem !important;
+    }
+    .house,
+    .you{
+        gap: 2rem !important;
+    }
+}
+@media screen and (max-width: 459px) {
+    :root{
+        --option-size: 12rem !important;
+        --triangle-size: 20rem !important;
+    }
+    .header img{
+        width: 12rem;
+    }
+    .header .score{
+        font-size: 4.2rem !important;
+    }
+    .header .score-div{
+        padding: 1rem 2rem !important;
+    }
+    .result-div{
+        font-size: 2rem !important;
+    }
+    .house,
+    .you{
+        gap: 1.5rem !important;
+    }
+    .result-div{
+        position: relative;
+    }
+    .result-div .result{
+        position: absolute;
+        top: 20rem !important;
+        left: 50% !important;
+        translate: -50% 0 !important;
+    }
+}
+@media screen and (max-width: 427px) {
+    .rules{
+        width: 100%;
+        height: 100vh;
+        border-radius: unset !important;
+        position: relative;
+    }
+    .rules-header + img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+    }
+}
+@media screen and (max-width: 375px) {
+    .rulesBtn{
+        bottom: unset !important;
+        top: 1rem;
+        padding: 1rem;
+        right: 50% !important;
+        translate: 50% 0;
+    }
+}
+
+@media screen and(max-height: 911px){
+    .playBtn{
+        color: black !important;
+    }
+}

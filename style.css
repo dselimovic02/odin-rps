@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
-
+@import url('animations.css');
+@import url('media-queries.css');
 :root{
 
     /* ### Primary */
@@ -9,7 +10,6 @@
     --paper-to: hsl(230, 89%, 65%);
     --rock-from: hsl(349, 71%, 52%);
     --rock-to: hsl(349, 70%, 56%);
-    /* - Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%) */
 
     /* ### Neutral */
     --Dark-Text: hsl(229, 25%, 31%);
@@ -28,7 +28,7 @@
     /*SIZES*/
     --triangle-size: 28rem;
     --option-size: 20rem;
-    --circle-size: 15rem;
+    --circle-size: calc(var(--option-size) * 0.75);
 
     /*OPTION SHADOW*/
     --outside: inset 0 -.6rem rgba(0, 0, 0, 0.35);
@@ -47,7 +47,9 @@ body{
     background: radial-gradient(circle at top,var(--bg-from), var(--bg-to));
     font-size: 1.6rem;
     width: 100%;
+    min-width: 100%;
     height: 100vh;
+    min-height: 100vh;
     padding: 6rem;
     display: flex;
     flex-direction: column;
@@ -100,28 +102,15 @@ input[type=number] {
 .selected{
     text-decoration: underline;
 }
-@keyframes shake {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-      transform: translateX(-10px);
-    }
-    20%, 40%, 60%, 80% {
-      transform: translateX(10px);
-    }
-}
-.shake {
-    animation: shake 0.5s ease-in-out;
-  }
+
+
+
+
 /*PLAY*/
 /********************************************/
 .playBtn{
     font-size: 3.8rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
+    margin-top: 3rem;
 }
 
 
@@ -131,7 +120,7 @@ input[type=number] {
 .header{
     display: flex;
     height: fit-content;
-    width: 40vw;
+    width: 50vw;
     padding: 2rem 3rem;
     align-items: center;
     justify-content: space-between;
@@ -192,19 +181,19 @@ input[type=number] {
 #paper{
     background: var(--paper-from);
     position: absolute;
-    top: -10rem;
-    left: -10rem;
+    top: calc(var(--option-size) / -2);
+    left: calc(var(--option-size) / -2);
 }
 #scissors{
     background: var(--scissors-from);
     position: absolute;
-    top: -10rem;
-    right: -10rem;
+    top: calc(var(--option-size) / -2);
+    right: calc(var(--option-size) / -2);
 }
 #rock{
     background: var(--rock-from);
     position: absolute;
-    bottom: -5rem;
+    bottom: calc(var(--option-size) / -4);
     left: 50%;
     translate: -50% 0;
 }
@@ -223,18 +212,6 @@ input[type=number] {
     left: 50%;
     translate: -55% -55%;
 }
-.fade-out{
-    animation: fade-out .5s linear;
-}
-@keyframes fade-out{
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-    }
-}
-
 
 
 /*RULES*/
@@ -262,14 +239,6 @@ input[type=number] {
     position: relative;
     animation: enlarge .3s ease-out;
 }
-@keyframes enlarge {
-    0%{
-        transform: scale(0.1);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
 .rules-header{
     width: 100%;
     display: flex;
@@ -286,6 +255,8 @@ input[type=number] {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+
 
 /*RESULTS*/
 /********************************************/
@@ -324,14 +295,6 @@ input[type=number] {
 .you p,
 .house p{
     animation: fade-in .5s linear;
-}
-@keyframes fade-in{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
 }
 .result{
     display: flex;
